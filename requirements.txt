@@ -1,0 +1,7 @@
+# LLM layer (Person C)
+google-genai
+requests
+python-dotenv
+
+# Testing
+pytest

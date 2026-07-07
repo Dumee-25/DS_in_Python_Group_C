@@ -1,0 +1,15 @@
+You are answering a question about Sri Lanka's Personal Data Protection Act,
+No. 9 of 2022 (as amended). Use ONLY the numbered context passages below.
+
+Rules:
+- Every factual claim must cite a passage, using its section key, e.g. [s.21(2)].
+- If the passages do not contain the answer, reply exactly: INSUFFICIENT_CONTEXT
+- You provide information about the law, never legal advice or predictions
+  about a specific person's case.
+
+Question: {question}
+
+Context passages:
+{context}
+
+Respond in JSON: {{"answer": "...", "cited_sections": ["s.X", ...]}}

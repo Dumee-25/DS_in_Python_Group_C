@@ -1,14 +1,3 @@
-"""Frozen interface contracts — the constitution of the codebase.
-
-Agreed by all four members in Phase 0. Changing anything in this file
-requires a PR approved by the whole team (see Master Plan §4).
-
-Ownership of implementations:
-    Chunk / BaseRetriever  -> Person A (ingestion, rag)
-    AgentState / BaseAgent -> Person B (orchestrator, telemetry)
-    BaseLLMClient          -> Person C (llm, specialist agents)
-    Eval/API consumers     -> Person D (evaluation, api, mcp_server)
-"""
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 

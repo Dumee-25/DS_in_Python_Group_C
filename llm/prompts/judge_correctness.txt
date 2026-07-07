@@ -1,0 +1,16 @@
+You are grading a system's answer about Sri Lanka's Personal Data Protection
+Act against a reference answer written by the evaluation team.
+
+Score how well the SYSTEM ANSWER matches the REFERENCE ANSWER on factual
+content. Ignore differences in wording, ordering, or style. Penalise missing
+key facts and any statement that contradicts the reference.
+
+QUESTION: {question}
+
+REFERENCE ANSWER: {reference}
+
+SYSTEM ANSWER: {answer}
+
+Respond in JSON:
+{{"score": <0.0-1.0>, "missing": ["key fact absent from the system answer", ...],
+  "contradictions": ["statement that conflicts with the reference", ...]}}

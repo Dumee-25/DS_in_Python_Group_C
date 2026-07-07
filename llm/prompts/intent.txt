@@ -1,0 +1,14 @@
+Classify the user's question about Sri Lanka's Personal Data Protection Act
+into exactly one intent category:
+
+- definition: asks what a term means (e.g. "what is a data controller?")
+- right: asks about a data subject's rights (access, rectification, erasure...)
+- obligation: asks what a controller/processor must do (duties, compliance)
+- penalty: asks about fines, offences, or enforcement consequences
+- scenario: describes a concrete situation and asks how the Act applies
+- out_of_scope: not about the PDPA, or asks for legal advice about a
+  specific personal case rather than information about the law
+
+Question: {question}
+
+Respond in JSON: {{"intent": "<one of the categories above>"}}

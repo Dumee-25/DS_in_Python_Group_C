@@ -1,0 +1,14 @@
+You are scoring the faithfulness of an ANSWER about Sri Lanka's Personal Data
+Protection Act: what fraction of its factual claims are directly entailed by
+the CONTEXT passages the system retrieved.
+
+Count a claim as entailed only if a passage states it explicitly or by direct
+implication. General legal knowledge does not count.
+
+ANSWER: {answer}
+
+CONTEXT: {context}
+
+Respond in JSON:
+{{"score": <entailed_claims / total_claims, 0.0-1.0>,
+  "unsupported_claims": ["claim not entailed by any passage", ...]}}

@@ -1,0 +1,162 @@
+[
+  {
+    "id": "Q01",
+    "question": "What does 'processing' mean under the PDPA?",
+    "category": "definition",
+    "gold_answer": "Processing means any operation performed on personal data, whether or not by automated means, including collection, storage, use, disclosure, and erasure.",
+    "governing_sections": ["s.56"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q02",
+    "question": "Who is a 'controller' under the Act?",
+    "category": "definition",
+    "gold_answer": "A controller is a person who, alone or jointly with others, determines the purposes and means of processing personal data.",
+    "governing_sections": ["s.56"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q03",
+    "question": "Does the PDPA apply to a company outside Sri Lanka processing Sri Lankan residents' data?",
+    "category": "scenario",
+    "gold_answer": "Yes — the Act reaches controllers and processors outside Sri Lanka where they offer goods or services to, or specifically monitor the behaviour of, data subjects in Sri Lanka.",
+    "governing_sections": ["s.2"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q04",
+    "question": "What is 'personal data' under the PDPA?",
+    "category": "definition",
+    "gold_answer": "Personal data means any information that can identify a data subject directly or indirectly, by reference to an identifier such as a name, identification number, location data, or factors specific to that person.",
+    "governing_sections": ["s.56"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q05",
+    "question": "What are 'special categories of personal data'?",
+    "category": "definition",
+    "gold_answer": "Special categories of personal data include data revealing racial or ethnic origin, political opinions, religious beliefs, health data, biometric and genetic data, data on sexual orientation, and data relating to offences — processing them attracts stricter conditions.",
+    "governing_sections": ["s.56"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q06",
+    "question": "What right does a data subject have to access their personal data?",
+    "category": "right",
+    "gold_answer": "A data subject may request from a controller confirmation of processing and access to their personal data, and the controller must respond within the period prescribed by the Act.",
+    "governing_sections": ["s.13"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q07",
+    "question": "Can a data subject request erasure of their personal data?",
+    "category": "right",
+    "gold_answer": "Yes — a data subject may request erasure of their personal data in the circumstances set out in the Act, such as where the data is no longer necessary for the purpose or consent has been withdrawn.",
+    "governing_sections": ["s.16"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q08",
+    "question": "Can consent to processing be withdrawn, and what happens when it is?",
+    "category": "right",
+    "gold_answer": "Consent may be withdrawn at any time; withdrawal does not affect the lawfulness of processing carried out before withdrawal, and the controller must cease the consent-based processing.",
+    "governing_sections": ["s.12"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q09",
+    "question": "What general obligations does a controller have when processing personal data?",
+    "category": "obligation",
+    "gold_answer": "A controller must process personal data lawfully, for specified legitimate purposes, adequately and proportionately, accurately, retain it no longer than necessary, and ensure integrity and confidentiality, with accountability for compliance.",
+    "governing_sections": ["s.5", "s.6", "s.7", "s.8", "s.9"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q10",
+    "question": "Is a controller required to appoint a Data Protection Officer?",
+    "category": "obligation",
+    "gold_answer": "Controllers and processors falling within the categories prescribed by the Act must appoint a Data Protection Officer to advise on and monitor compliance.",
+    "governing_sections": ["s.20"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q11",
+    "question": "What must a controller do after a personal data breach?",
+    "category": "obligation",
+    "gold_answer": "The controller must notify the Data Protection Authority of the breach in the prescribed manner and, where required, communicate the breach to the affected data subjects.",
+    "governing_sections": ["s.23"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q12",
+    "question": "What penalties can the Data Protection Authority impose for non-compliance?",
+    "category": "penalty",
+    "gold_answer": "The Authority may impose administrative penalties on a controller or processor who fails to comply with the Act or a directive, up to the monetary ceiling specified in the Act, considering the nature and gravity of the non-compliance.",
+    "governing_sections": ["s.38"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q13",
+    "question": "What happens if a controller fails to comply with a directive issued by the Authority?",
+    "category": "penalty",
+    "gold_answer": "Failure to comply with a directive of the Authority may result in an administrative penalty, and repeated or continuing non-compliance can attract enhanced penalties as provided by the Act.",
+    "governing_sections": ["s.38"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q14",
+    "question": "Can a penalty imposed by the Authority be appealed?",
+    "category": "penalty",
+    "gold_answer": "Yes — a person aggrieved by a decision of the Authority may appeal in the manner and within the period provided by the Act.",
+    "governing_sections": ["s.39"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q15",
+    "question": "A hospital wants to share patient records with a research company without patient consent. What does the Act say?",
+    "category": "scenario",
+    "gold_answer": "Health data is a special category of personal data; processing it requires a lawful condition such as explicit consent or a specific statutory basis, so sharing identifiable patient records for research without consent would need to satisfy one of the Act's stricter conditions.",
+    "governing_sections": ["s.56", "s.5"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q16",
+    "question": "Are the provisions on data subject rights currently in force as of the corpus snapshot date?",
+    "category": "scenario",
+    "gold_answer": "Depends on the commencement Orders in the corpus: the answer must state which relevant sections are in operation as of the snapshot date and flag any that have not yet commenced.",
+    "governing_sections": ["s.1"],
+    "expected_behavior": "answer"
+  },
+  {
+    "id": "Q17",
+    "question": "My employer read my emails. Should I sue them under the PDPA?",
+    "category": "out_of_scope",
+    "gold_answer": null,
+    "governing_sections": [],
+    "expected_behavior": "abstain"
+  },
+  {
+    "id": "Q18",
+    "question": "Will I win a case against a company that leaked my personal data?",
+    "category": "out_of_scope",
+    "gold_answer": null,
+    "governing_sections": [],
+    "expected_behavior": "abstain"
+  },
+  {
+    "id": "Q19",
+    "question": "What does the GDPR say about international data transfers?",
+    "category": "out_of_scope",
+    "gold_answer": null,
+    "governing_sections": [],
+    "expected_behavior": "abstain"
+  },
+  {
+    "id": "Q20",
+    "question": "Draft a legal complaint for me against my telecom provider for misusing my data.",
+    "category": "out_of_scope",
+    "gold_answer": null,
+    "governing_sections": [],
+    "expected_behavior": "abstain"
+  }
+]

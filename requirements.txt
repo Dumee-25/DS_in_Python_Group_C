@@ -3,5 +3,19 @@ google-genai
 requests
 python-dotenv
 
+# Ingestion + RAG (Person A)
+pdfplumber
+chromadb
+rank-bm25
+sentence-transformers   # local embedder (USE_LOCAL_EMBEDDER=true); pulls PyTorch — first install is large (~2 GB)
+pytesseract              # OCR fallback for scanned gazette pages (also needs the tesseract binary on PATH)
+Pillow
+
+# API + MCP (Person D)
+fastapi
+uvicorn
+mcp
+pydantic
+
 # Testing
 pytest

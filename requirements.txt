@@ -2,6 +2,7 @@
 google-genai
 requests
 python-dotenv
+anthropic                # judges + final graded eval run (LLM_VENDOR=anthropic)
 
 # Ingestion + RAG (Person A)
 pdfplumber

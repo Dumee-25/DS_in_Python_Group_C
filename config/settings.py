@@ -8,8 +8,13 @@ load_dotenv()
 
 @dataclass(frozen=True)
 class Settings:
+    llm_vendor: str = os.getenv("LLM_VENDOR", "gemini")   # ollama | gemini | anthropic
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
     openrouter_api_key: str = os.getenv("OPENROUTER_API_KEY", "")
+    anthropic_api_key: str = os.getenv("ANTHROPIC_API_KEY", "")
+    anthropic_model: str = os.getenv("ANTHROPIC_MODEL", "claude-haiku-4-5")
+    ollama_model: str = os.getenv("OLLAMA_MODEL", "qwen2.5:7b-instruct")
+    ollama_host: str = os.getenv("OLLAMA_HOST", "http://localhost:11434")
     chroma_path: str = os.getenv("CHROMA_PATH", "./chroma_db")
     top_k: int = int(os.getenv("TOP_K", "6"))
     max_retries: int = int(os.getenv("MAX_AGENT_RETRIES", "2"))

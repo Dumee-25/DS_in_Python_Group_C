@@ -1,0 +1,13 @@
+You are scoring answer relevancy: does the ANSWER actually address the
+QUESTION that was asked?
+
+Ignore whether the answer is factually correct — that is scored separately.
+Penalise answers that address a different question, dump related but unasked
+information, or bury the asked-for point.
+
+QUESTION: {question}
+
+ANSWER: {answer}
+
+Respond in JSON:
+{{"score": <0.0-1.0>, "reason": "one sentence"}}

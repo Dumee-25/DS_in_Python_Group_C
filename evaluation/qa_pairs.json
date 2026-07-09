@@ -3,7 +3,7 @@
     "id": "Q01",
     "question": "What does 'processing' mean under the PDPA?",
     "category": "definition",
-    "gold_answer": "Processing means any operation performed on personal data, whether or not by automated means, including collection, storage, use, disclosure, and erasure.",
+    "gold_answer": "Processing means any operation performed on personal data, including but not limited to collection, storage, preservation, alteration, retrieval, disclosure, transmission, making available, erasure or destruction.",
     "governing_sections": ["s.56"],
     "expected_behavior": "answer"
   },
@@ -11,7 +11,7 @@
     "id": "Q02",
     "question": "Who is a 'controller' under the Act?",
     "category": "definition",
-    "gold_answer": "A controller is a person who, alone or jointly with others, determines the purposes and means of processing personal data.",
+    "gold_answer": "A controller is any natural or legal person, public authority, public corporation, non-governmental organization, agency or other body which alone or jointly with others determines the purposes and means of processing personal data.",
     "governing_sections": ["s.56"],
     "expected_behavior": "answer"
   },
@@ -19,7 +19,7 @@
     "id": "Q03",
     "question": "Does the PDPA apply to a company outside Sri Lanka processing Sri Lankan residents' data?",
     "category": "scenario",
-    "gold_answer": "Yes — the Act reaches controllers and processors outside Sri Lanka where they offer goods or services to, or specifically monitor the behaviour of, data subjects in Sri Lanka.",
+    "gold_answer": "Yes — the Act reaches controllers and processors outside Sri Lanka where they offer goods or services to data subjects in Sri Lanka (including specific targeting) or specifically monitor the behaviour of data subjects in Sri Lanka, including profiling.",
     "governing_sections": ["s.2"],
     "expected_behavior": "answer"
   },
@@ -27,7 +27,7 @@
     "id": "Q04",
     "question": "What is 'personal data' under the PDPA?",
     "category": "definition",
-    "gold_answer": "Personal data means any information that can identify a data subject directly or indirectly, by reference to an identifier such as a name, identification number, location data, or factors specific to that person.",
+    "gold_answer": "Personal data means any information that can identify a data subject directly or indirectly, by reference to an identifier such as a name, identification number, financial data, location data or an online identifier, or to factors specific to that person's physical, physiological, genetic, psychological, economic, cultural or social identity.",
     "governing_sections": ["s.56"],
     "expected_behavior": "answer"
   },
@@ -35,7 +35,7 @@
     "id": "Q05",
     "question": "What are 'special categories of personal data'?",
     "category": "definition",
-    "gold_answer": "Special categories of personal data include data revealing racial or ethnic origin, political opinions, religious beliefs, health data, biometric and genetic data, data on sexual orientation, and data relating to offences — processing them attracts stricter conditions.",
+    "gold_answer": "Special categories of personal data are personal data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, genetic data, biometric data processed to uniquely identify a person, data concerning health, data concerning a person's sex life or sexual orientation, personal data relating to offences, criminal proceedings and convictions, and personal data relating to a child — processing them attracts stricter conditions.",
     "governing_sections": ["s.56"],
     "expected_behavior": "answer"
   },
@@ -43,15 +43,15 @@
     "id": "Q06",
     "question": "What right does a data subject have to access their personal data?",
     "category": "right",
-    "gold_answer": "A data subject may request from a controller confirmation of processing and access to their personal data, and the controller must respond within the period prescribed by the Act.",
-    "governing_sections": ["s.13"],
+    "gold_answer": "A data subject may make a written request to the controller for confirmation of whether their personal data has been processed and for access to that data and the Schedule V information; the controller must respond in writing without undue delay and within one month of the request (extendable by up to two further months, to a maximum of three, per s.17 as amended by Act No. 22 of 2025).",
+    "governing_sections": ["s.13", "s.17"],
     "expected_behavior": "answer"
   },
   {
     "id": "Q07",
     "question": "Can a data subject request erasure of their personal data?",
     "category": "right",
-    "gold_answer": "Yes — a data subject may request erasure of their personal data in the circumstances set out in the Act, such as where the data is no longer necessary for the purpose or consent has been withdrawn.",
+    "gold_answer": "Yes — a data subject may make a written request for erasure where the processing contravenes the obligations in sections 5 to 11, where the data subject withdraws the consent on which the processing is based, or where erasure is required by written law or an order of a competent court.",
     "governing_sections": ["s.16"],
     "expected_behavior": "answer"
   },
@@ -59,23 +59,23 @@
     "id": "Q08",
     "question": "Can consent to processing be withdrawn, and what happens when it is?",
     "category": "right",
-    "gold_answer": "Consent may be withdrawn at any time; withdrawal does not affect the lawfulness of processing carried out before withdrawal, and the controller must cease the consent-based processing.",
-    "governing_sections": ["s.12"],
+    "gold_answer": "Yes — where processing is based on consent, the data subject may withdraw that consent at any time by written request; withdrawal does not affect the lawfulness of processing that took place before withdrawal.",
+    "governing_sections": ["s.14"],
     "expected_behavior": "answer"
   },
   {
     "id": "Q09",
     "question": "What general obligations does a controller have when processing personal data?",
     "category": "obligation",
-    "gold_answer": "A controller must process personal data lawfully, for specified legitimate purposes, adequately and proportionately, accurately, retain it no longer than necessary, and ensure integrity and confidentiality, with accountability for compliance.",
-    "governing_sections": ["s.5", "s.6", "s.7", "s.8", "s.9"],
+    "gold_answer": "A controller must process personal data lawfully under the Schedule conditions, for specified, explicit and legitimate purposes, keep it adequate, relevant and proportionate to that purpose, accurate and up to date, retain it in identifiable form no longer than permitted, maintain integrity and confidentiality with appropriate technical and organisational measures, process transparently, and maintain a Data Protection Management Programme for accountability.",
+    "governing_sections": ["s.5", "s.6", "s.7", "s.8", "s.9", "s.10", "s.11", "s.12"],
     "expected_behavior": "answer"
   },
   {
     "id": "Q10",
     "question": "Is a controller required to appoint a Data Protection Officer?",
     "category": "obligation",
-    "gold_answer": "Controllers and processors falling within the categories prescribed by the Act must appoint a Data Protection Officer to advise on and monitor compliance.",
+    "gold_answer": "Controllers and processors falling within the categories set out in section 20 — such as a Ministry or government department, or those whose core activities involve prescribed large-scale monitoring or risk-of-harm processing — must designate or appoint a Data Protection Officer to advise on and monitor compliance.",
     "governing_sections": ["s.20"],
     "expected_behavior": "answer"
   },
@@ -83,7 +83,7 @@
     "id": "Q11",
     "question": "What must a controller do after a personal data breach?",
     "category": "obligation",
-    "gold_answer": "The controller must notify the Data Protection Authority of the breach in the prescribed manner and, where required, communicate the breach to the affected data subjects.",
+    "gold_answer": "The controller must notify the Data Protection Authority of the breach in the form, manner and period determined by rules made under the Act, and those rules also set out the circumstances in which affected data subjects must be notified.",
     "governing_sections": ["s.23"],
     "expected_behavior": "answer"
   },
@@ -91,15 +91,15 @@
     "id": "Q12",
     "question": "What penalties can the Data Protection Authority impose for non-compliance?",
     "category": "penalty",
-    "gold_answer": "The Authority may impose administrative penalties on a controller or processor who fails to comply with the Act or a directive, up to the monetary ceiling specified in the Act, considering the nature and gravity of the non-compliance.",
-    "governing_sections": ["s.38"],
+    "gold_answer": "Where a controller or processor fails to comply with a directive issued under section 35, the Authority may by notice require payment of an administrative penalty not exceeding ten million rupees for each non-compliance, having regard to the impact on data subjects, the nature and extent of the non-compliance and the section 39 factors.",
+    "governing_sections": ["s.38", "s.39"],
     "expected_behavior": "answer"
   },
   {
     "id": "Q13",
     "question": "What happens if a controller fails to comply with a directive issued by the Authority?",
     "category": "penalty",
-    "gold_answer": "Failure to comply with a directive of the Authority may result in an administrative penalty, and repeated or continuing non-compliance can attract enhanced penalties as provided by the Act.",
+    "gold_answer": "The Authority may impose an administrative penalty of up to ten million rupees per non-compliance, and a controller or processor previously penalised who again fails to conform is liable to an additional penalty of twice that amount for the second and each subsequent non-compliance.",
     "governing_sections": ["s.38"],
     "expected_behavior": "answer"
   },
@@ -107,15 +107,15 @@
     "id": "Q14",
     "question": "Can a penalty imposed by the Authority be appealed?",
     "category": "penalty",
-    "gold_answer": "Yes — a person aggrieved by a decision of the Authority may appeal in the manner and within the period provided by the Act.",
-    "governing_sections": ["s.39"],
+    "gold_answer": "Yes — a controller or processor aggrieved by the imposition of an administrative penalty may appeal to the Court of Appeal within twenty-one working days of the decision, and on such an appeal the burden of proof lies on the appellant controller or processor.",
+    "governing_sections": ["s.38"],
     "expected_behavior": "answer"
   },
   {
     "id": "Q15",
     "question": "A hospital wants to share patient records with a research company without patient consent. What does the Act say?",
     "category": "scenario",
-    "gold_answer": "Health data is a special category of personal data; processing it requires a lawful condition such as explicit consent or a specific statutory basis, so sharing identifiable patient records for research without consent would need to satisfy one of the Act's stricter conditions.",
+    "gold_answer": "Health data is a special category of personal data; processing it requires satisfying the stricter Schedule II conditions, such as explicit consent or a specific statutory basis, so sharing identifiable patient records for research without consent would need to satisfy one of those conditions.",
     "governing_sections": ["s.56", "s.5"],
     "expected_behavior": "answer"
   },
@@ -123,7 +123,7 @@
     "id": "Q16",
     "question": "Are the provisions on data subject rights currently in force as of the corpus snapshot date?",
     "category": "scenario",
-    "gold_answer": "Depends on the commencement Orders in the corpus: the answer must state which relevant sections are in operation as of the snapshot date and flag any that have not yet commenced.",
+    "gold_answer": "No — Part II (sections 13 to 19, the data subject rights) is not yet in operation as of the snapshot date: the 18 March 2025 appointed date was repealed by Gazette 2427/34 of 14 March 2025, and following the Amendment Act No. 22 of 2025 commencement awaits a fresh Ministerial Order under section 1(3).",
     "governing_sections": ["s.1"],
     "expected_behavior": "answer"
   },

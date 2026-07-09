@@ -1,5 +1,4 @@
 """Fallback client must switch vendors when the primary raises."""
-import pytest
 
 from llm.client import BaseLLMClient
 from llm.fallback import FallbackLLMClient

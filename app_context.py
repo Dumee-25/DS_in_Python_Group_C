@@ -1,23 +1,51 @@
 from config.settings import Settings
 
 
+def make_primary_llm(settings: Settings):
+    """The vendor switch: LLM_VENDOR picks which client answers.
+
+    Pure DI — agents only ever see BaseLLMClient, so changing vendor is a
+    one-line .env edit ("local 7B for development, frontier model for the
+    final evaluation, behind one adapter").
+    """
+    if settings.llm_vendor == "ollama":
+        from llm.ollama_client import OllamaClient
+        return OllamaClient(settings.ollama_model, settings.ollama_host)
+    if settings.llm_vendor == "anthropic":
+        from llm.anthropic_client import AnthropicClient
+        return AnthropicClient(settings.anthropic_api_key, settings.anthropic_model)
+    if settings.llm_vendor == "gemini":
+        from llm.gemini import GeminiClient
+        return GeminiClient(settings.gemini_api_key)
+    raise ValueError(
+        f"Unknown LLM_VENDOR {settings.llm_vendor!r} — use ollama | gemini | anthropic")
+
+
 class AppContext:
     def __init__(self, settings: Settings | None = None):
         self.settings = settings or Settings()
 
         # llm layer (Person C's classes)
         from llm.fallback import FallbackLLMClient
-        from llm.gemini import GeminiClient
         self.llm = FallbackLLMClient(
-            primary=GeminiClient(self.settings.gemini_api_key),
+            primary=make_primary_llm(self.settings),
             secondary_key=self.settings.openrouter_api_key,
         )
 
         # rag layer (Person A's classes)
         from rag.embeddings import GeminiEmbedder, LocalEmbedder
         from rag.store import VectorStore
-        embedder = (LocalEmbedder() if self.settings.use_local_embedder
-                    else GeminiEmbedder(self.llm.raw_client))
+        if self.settings.use_local_embedder:
+            embedder = LocalEmbedder()
+        else:
+            # Gemini embeddings need a genai client; when the generation
+            # vendor isn't Gemini there's no raw_client to reuse, so build
+            # one just for the embedder.
+            raw = self.llm.raw_client
+            if raw is None:
+                from llm.gemini import GeminiClient
+                raw = GeminiClient(self.settings.gemini_api_key).raw_client
+            embedder = GeminiEmbedder(raw)
         self.store = VectorStore(self.settings.chroma_path, embedder)
 
         from rag.hybrid import HybridRetriever

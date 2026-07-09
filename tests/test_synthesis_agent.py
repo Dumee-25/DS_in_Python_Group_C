@@ -62,3 +62,13 @@ def test_retrieved_chunks_reach_the_prompt():
     SynthesisAgent(llm).run(_state())
     assert "[s.2]" in llm.last_prompt
     assert "What is a data controller?" in llm.last_prompt
+
+
+def test_decorated_citations_are_normalised_to_bare_keys():
+    """Models copy the context format ('s.14 (doc.pdf)', '[s.14]') into
+    cited_sections; the verifier needs bare Chunk.section keys."""
+    llm = CannedLLM(json.dumps({
+        "answer": "Withdrawal is possible [s.14].",
+        "cited_sections": ["s.14 (pdpa_act_9_2022.pdf)", "[s.14]", "s.17(2)"]}))
+    state = SynthesisAgent(llm).run(_state())
+    assert state.cited_sections == ["s.14", "s.17(2)"]

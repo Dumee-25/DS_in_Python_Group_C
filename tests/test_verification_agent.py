@@ -49,3 +49,12 @@ def test_malformed_judge_output_flags_retry():
     llm = CannedLLM("not json at all")
     state = VerificationAgent(llm).run(_state(cited=["s.2"]))
     assert state.verdict == "retry"
+
+
+def test_subsection_citations_of_retrieved_sections_are_not_fabricated():
+    """Chunk labels are bare 's.N'; a draft citing 's.2(3)' is more precise
+    than the label, not fabricated — it must reach the LLM judge."""
+    llm = CannedLLM(json.dumps({"all_supported": True}))
+    state = VerificationAgent(llm).run(_state(cited=["s.2(3)", "s.2"]))
+    assert state.verdict == "grounded"
+    assert llm.calls == 1

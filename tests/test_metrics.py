@@ -1,4 +1,4 @@
-"""Person D's unit tests — deterministic metrics + judge parse guard."""
+"""Deterministic metrics + judge parse guard."""
 from evaluation.metrics import citation_f1, llm_judge, refusal_accuracy
 from llm.client import BaseLLMClient
 
@@ -44,3 +44,10 @@ def test_llm_judge_survives_unparseable_output():
     llm = CannedLLM("I am not JSON")
     result = llm_judge(llm, "judge_relevancy", question="q", answer="a")
     assert result["score"] is None
+
+
+def test_citation_f1_credits_subsection_precise_citations():
+    """'s.38(7)' cited against gold 's.38' is a hit, not a miss."""
+    from evaluation.metrics import citation_f1
+    r = citation_f1(["s.38(7)", "s.38(9)"], ["s.38"])
+    assert r["f1"] == 1.0

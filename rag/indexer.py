@@ -1,9 +1,33 @@
 import hashlib
 import json
-from dataclasses import asdict
+import re
+from dataclasses import asdict, replace
 from pathlib import Path
 
 from shared.contracts import Chunk
+
+# "“controller” means, ..." — each defined term opens with the term in
+# smart quotes followed by "means".
+_DEFINITION_START_RE = re.compile(r"(?=[“\"][^”\"]{2,60}[”\"]\s+means)")
+
+
+def _explode_definitions(chunks: list[Chunk]) -> list[Chunk]:
+    """One chunk per defined term. A 1800-char wall of mixed definitions is
+    invisible to both retrieval legs: the embedder can't represent which
+    term it defines, and glossary words ('controller', 'processing') are so
+    common corpus-wide that BM25's IDF gives them no weight. Small
+    single-definition chunks make the term dominate both signals."""
+    joined = " ".join(c.text for c in chunks)
+    pieces = [p.strip() for p in _DEFINITION_START_RE.split(joined)
+              if len(p.strip()) > 20]
+    seen, out = set(), []
+    template = chunks[0]
+    for piece in pieces:
+        key = piece[:60]                    # dedupe splitter-overlap copies
+        if key not in seen:
+            seen.add(key)
+            out.append(replace(template, text=piece))
+    return out
 
 
 def _file_hash(path: str) -> str:
@@ -64,6 +88,13 @@ def index_corpus(store, documents: list[dict], chunker_for) -> dict[str, int]:
                                collection=entry["collection"],
                                snapshot_date=entry["snapshot_date"],
                                in_force=entry["in_force"])
+        for c in chunks:   # manifest-driven per-section collection overrides
+            c.collection = entry.get("reroute_sections", {}).get(
+                c.section, c.collection)
+        rerouted = [c for c in chunks if c.collection == "definitions"]
+        if rerouted:
+            chunks = [c for c in chunks if c.collection != "definitions"]
+            chunks += _explode_definitions(rerouted)
         for c in chunks[:3]:                       # narrate for the video
             print(f"    [{c.section or 'n/a'}] {c.text[:80]!r}...")
         store.add(chunks)
@@ -78,7 +109,7 @@ def index_corpus(store, documents: list[dict], chunker_for) -> dict[str, int]:
 
 
 def load_indexed_chunks(store) -> list[Chunk]:
-    """All stored chunks — app_context (Person B) feeds these to HybridRetriever.
+    """All stored chunks — app_context feeds these to HybridRetriever.
 
     Reads the chunks.json sidecar written at index time rather than bulk-
     reading Chroma: in chromadb 1.5.x, collection.get() across two or more

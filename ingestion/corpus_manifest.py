@@ -4,6 +4,10 @@ DOCUMENTS = [
     {
         "path": "corpus/pdpa_act_9_2022.pdf",
         "collection": "statute",
+        # s.56 (Interpretation) is the Act's definitions section; routing it
+        # to its own small collection stops definition lookups drowning in
+        # the 90-chunk statute haystack ("controller" appears everywhere).
+        "reroute_sections": {"s.56": "definitions"},
         "snapshot_date": SNAPSHOT_DATE,
         "in_force": True,          # document-level default; sections differ — see COMMENCEMENT
         "commencement_notes": "principal enactment, certified 19 Mar 2022; "

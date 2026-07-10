@@ -12,12 +12,24 @@ class BaseChunker(ABC):
 
 
 class SectionAwareChunker(BaseChunker):
-   
-    SECTION_RE = re.compile(r"(?m)^\s*(\d{1,3})\.\s")   # top-level sections
+
+    # Sections open as "N. (1) ..." or "N. Word ...", but pdfplumber
+    # interleaves the margin notes so the marker is often mid-line
+    # ("Imposition of 38. (1) Where a controller..."). Candidates are
+    # matched anywhere, then filtered by the statute's strictly increasing
+    # section numbering — which also rejects Schedule item numbers (they
+    # restart at 1 after the last section) and sections quoted inside
+    # amendment text (they jump backwards).
+    SECTION_RE = re.compile(r"(?m)(?:^|\s)(\d{1,2})\.\s+(?=\(1\)|[A-Z])")
 
     def chunk(self, text, source_doc, collection, snapshot_date, in_force):
         chunks, spans = [], []
-        matches = list(self.SECTION_RE.finditer(text))
+        matches, last = [], 0
+        for m in self.SECTION_RE.finditer(text):
+            n = int(m.group(1))
+            if last < n <= last + 3:      # next section, tolerating ≤2 missed markers
+                matches.append(m)
+                last = n
         for i, m in enumerate(matches):
             start = m.start()
             end = matches[i + 1].start() if i + 1 < len(matches) else len(text)

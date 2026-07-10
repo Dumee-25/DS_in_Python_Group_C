@@ -1,7 +1,17 @@
+import re
 
 from rank_bm25 import BM25Okapi
 
 from shared.contracts import BaseRetriever, Chunk
+
+_TOKEN_RE = re.compile(r"[a-z0-9]+(?:\.[0-9]+)?")
+
+
+def _tokenise(text: str) -> list[str]:
+    """Punctuation-aware: \"'processing'\" must match \"processing\" —
+    bare str.split() keeps the quotes and silently kills the BM25 side
+    for every quoted-term question."""
+    return _TOKEN_RE.findall(text.lower())
 
 
 class HybridRetriever(BaseRetriever):
@@ -10,11 +20,11 @@ class HybridRetriever(BaseRetriever):
     def __init__(self, store, all_chunks: list[Chunk]):
         self._store = store
         self._chunks = all_chunks
-        self._bm25 = BM25Okapi([c.text.lower().split() for c in all_chunks])
+        self._bm25 = BM25Okapi([_tokenise(c.text) for c in all_chunks])
 
     def retrieve(self, query, top_k, collections):
         vec = self._store.query(query, top_k * 2, collections)
-        scores = self._bm25.get_scores(query.lower().split())
+        scores = self._bm25.get_scores(_tokenise(query))
         kw_ranked = sorted(range(len(scores)), key=lambda i: scores[i],
                            reverse=True)[:top_k * 2]
         kw = [self._chunks[i] for i in kw_ranked

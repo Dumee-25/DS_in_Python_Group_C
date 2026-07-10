@@ -124,3 +124,14 @@ def test_anthropic_client_extracts_text_and_nudges_json(monkeypatch):
     assert captured["model"] == "claude-haiku-4-5"
     assert captured["system"].startswith("You are a strict judge.")
     assert "valid JSON object" in captured["system"]
+
+
+def test_load_prompt_resolves_pinned_version():
+    """Versioned prompts: 'synthesis' resolves to the ACTIVE_VERSIONS pin;
+    unversioned names keep their bare filename."""
+    from llm.client import ACTIVE_VERSIONS, load_prompt
+    assert ACTIVE_VERSIONS["synthesis"] == 2
+    v2 = load_prompt("synthesis", question="q", context="c")
+    assert "BARE section keys" in v2          # v2-only rule
+    intent = load_prompt("intent", question="q")
+    assert "Classify" in intent               # unversioned file still loads

@@ -1,6 +1,7 @@
 """Synthesis specialist: grounded draft with structured [s.X] citations.
 
-The prompt (llm/prompts/synthesis.txt) is the craft here; the code is small.
+The prompt (llm/prompts/synthesis_v<N>.txt, pinned in llm.client) is the
+craft here; the code is small.
 """
 import json
 import re

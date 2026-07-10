@@ -14,7 +14,7 @@ class Chunk:
 
 
 @dataclass
-class AgentState:            # owned by Person B, read by everyone
+class AgentState:            # shared pipeline state, read by every agent
     query: str
     intent: str = ""
     sub_queries: list[str] = field(default_factory=list)

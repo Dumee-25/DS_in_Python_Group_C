@@ -1,8 +1,8 @@
 """Anthropic implementation of the LLM adapter.
 
 Reserved for the LLM judges and the final graded eval run: judging with a
-different vendor than the generator avoids self-preference bias (Person D's
-eval requirement). Haiku 4.5 keeps a full ~200-call eval run around $1.
+different vendor than the generator avoids self-preference bias.
+Haiku 4.5 keeps a full ~200-call eval run around $1.
 """
 from llm.client import BaseLLMClient
 from telemetry.metrics import SystemMetrics

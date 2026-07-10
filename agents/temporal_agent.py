@@ -1,7 +1,7 @@
 """Temporal/applicability specialist — the differentiator.
 
 Annotates which cited provisions are actually in force as of the corpus
-snapshot date. No LLM call: it's a metadata lookup against Person A's
+snapshot date. No LLM call: it's a metadata lookup against the
 corpus manifest. This is what a plain LLM cannot do for a 2025-amended Act.
 """
 import re
@@ -24,7 +24,7 @@ class TemporalAgent(BaseAgent):
     def __init__(self, snapshot_date: str, commencement: dict | None = None):
         """commencement maps section keys/ranges to in-force metadata, e.g.
         {"s.20-s.27": {"in_force": False, "note": "..."}}. Injected here;
-        app_context wires in ingestion.corpus_manifest.COMMENCEMENT (Person A).
+        app_context wires in ingestion.corpus_manifest.COMMENCEMENT.
         """
         self._snapshot = snapshot_date
         if commencement is None:

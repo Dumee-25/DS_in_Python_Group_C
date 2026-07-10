@@ -1,6 +1,6 @@
 # §IV Empirical Evaluation — results skeleton
 
-<!-- TODO(D): runner fills the table; you write method + failure analysis. -->
+<!-- TODO: runner fills the table; add method + failure analysis. -->
 
 ## Method
 
@@ -21,7 +21,7 @@ TODO · mean relevancy TODO · refusal accuracy TODO/20
 
 ## Failure analysis
 
-<!-- TODO(D): two case studies. For each: the failing item, the diagnosis
-     (retrieval miss → A / routing-loop → B / prompt-grounding → C / bad gold → D),
+<!-- TODO: two case studies. For each: the failing item, the diagnosis
+     (retrieval miss / routing loop / prompt grounding / bad gold),
      the fix, and the re-run delta. "F1 went 0.61 → 0.84 after X" is the
      strongest sentence available. -->

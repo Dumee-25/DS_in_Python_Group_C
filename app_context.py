@@ -25,14 +25,14 @@ class AppContext:
     def __init__(self, settings: Settings | None = None):
         self.settings = settings or Settings()
 
-        # llm layer (Person C's classes)
+        # llm layer
         from llm.fallback import FallbackLLMClient
         self.llm = FallbackLLMClient(
             primary=make_primary_llm(self.settings),
             secondary_key=self.settings.openrouter_api_key,
         )
 
-        # rag layer (Person A's classes)
+        # rag layer
         from rag.embeddings import GeminiEmbedder, LocalEmbedder
         from rag.store import VectorStore
         if self.settings.use_local_embedder:
@@ -52,7 +52,7 @@ class AppContext:
         from rag.indexer import load_indexed_chunks
         self.retriever = HybridRetriever(self.store, load_indexed_chunks(self.store))
 
-        # agents (Person C's specialists + the orchestrator)
+        # agents (specialists + orchestrator)
         from agents.orchestrator import Orchestrator
         from agents.retrieval_agent import RetrievalAgent
         from agents.synthesis_agent import SynthesisAgent

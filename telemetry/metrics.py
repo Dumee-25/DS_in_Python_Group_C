@@ -16,4 +16,4 @@ class SystemMetrics:
         self.cost += cost
         self.events.append({"component": component, "tokens": tokens, **fields})
 
-    # TODO(B): per-agent latency aggregation + a summary dict for D's /status route.
+    # TODO: per-agent latency aggregation + a summary dict for the /status route.

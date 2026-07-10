@@ -1,10 +1,10 @@
-# LLM layer (Person C)
+# LLM layer
 google-genai
 requests
 python-dotenv
 anthropic                # judges + final graded eval run (LLM_VENDOR=anthropic)
 
-# Ingestion + RAG (Person A)
+# Ingestion + RAG
 pdfplumber
 chromadb
 rank-bm25
@@ -12,7 +12,7 @@ sentence-transformers   # local embedder (USE_LOCAL_EMBEDDER=true); pulls PyTorc
 pytesseract              # OCR fallback for scanned gazette pages (also needs the tesseract binary on PATH)
 Pillow
 
-# API + MCP (Person D)
+# API + MCP
 fastapi
 uvicorn
 mcp

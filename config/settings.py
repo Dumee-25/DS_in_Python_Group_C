@@ -21,4 +21,4 @@ class Settings:
     snapshot_date: str = os.getenv("CORPUS_SNAPSHOT_DATE", "2026-07-01")
     use_local_embedder: bool = os.getenv("USE_LOCAL_EMBEDDER", "false") == "true"
 
-# TODO(B): mirror any new variable in .env.example — named brief requirement.
+# NOTE: mirror any new variable in .env.example — named brief requirement.

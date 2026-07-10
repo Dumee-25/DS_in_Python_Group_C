@@ -1,6 +1,6 @@
 """MCP server — the same AppContext behind a third front-end (CLI, REST, MCP).
 
-Run: python -m mcp_server.server   (add `mcp` to requirements.txt — your dep)
+Run: python -m mcp_server.server
 One line for §II: exposing the system over MCP touched zero agents.
 """
 from mcp.server.fastmcp import FastMCP

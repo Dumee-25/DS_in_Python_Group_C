@@ -21,3 +21,6 @@ Thumbs.db
 
 # Generated eval artifacts
 evaluation/results.md
+
+# Local Claude Code tooling
+.claude/

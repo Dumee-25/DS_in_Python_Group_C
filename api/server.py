@@ -1,16 +1,26 @@
 """FastAPI surface — traceability exposed at the API level.
 
-Run: uvicorn api.server:create_app --factory
+Run: uvicorn api.server:create_app --factory
+Web UI at /, interactive API docs at /docs.
 """
+from pathlib import Path
+
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 from app_context import AppContext
 from shared.contracts import AgentState
 
+_INDEX = Path(__file__).parent / "static" / "index.html"
+
 
 def create_app() -> FastAPI:
     app, ctx = FastAPI(title="PDPA Agent"), AppContext()
+
+    @app.get("/", response_class=HTMLResponse)
+    def index():
+        return _INDEX.read_text(encoding="utf-8")
 
     class Ask(BaseModel):
         question: str

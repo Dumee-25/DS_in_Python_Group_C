@@ -94,3 +94,29 @@ def test_hybrid_beats_vector_only_on_exact_phrase(tmp_path):
     hybrid = HybridRetriever(store, store.all_chunks())
     fused = hybrid.retrieve(query, top_k=2, collections=["statute"])
     assert any(c.section == "s.26" for c in fused)           # BM25 rescues it
+
+
+def test_section_chunker_catches_midline_markers_and_rejects_restarts():
+    """pdfplumber interleaves margin notes ('Imposition of 38. (1) Where...'),
+    and Schedule items restart numbering — labels must survive both."""
+    from ingestion.chunking import SectionAwareChunker
+    text = ("1. (1) This Act may be cited as the PDPA. "
+            "2. (1) This Act shall apply to processing. "
+            "Imposition of 3. (1) Where a controller fails penalties apply. "
+            "SCHEDULE I 1. Consent of the data subject.")
+    chunks = SectionAwareChunker().chunk(text, source_doc="d.pdf",
+                                         collection="statute",
+                                         snapshot_date="2026-07-01",
+                                         in_force=True)
+    labels = [c.section for c in chunks]
+    assert labels == ["s.1", "s.2", "s.3"]          # no s.1 restart from the Schedule
+    assert "penalties" in chunks[2].text            # mid-line marker captured
+
+
+def test_bm25_tokeniser_matches_quoted_terms():
+    """\"'processing'\" in a question must match \"processing\" in the text."""
+    from rag.hybrid import _tokenise
+    assert _tokenise("What does 'processing' mean?") == [
+        "what", "does", "processing", "mean"]
+    # section references survive as single searchable tokens
+    assert _tokenise("cited s.38(7)") == ["cited", "s.38", "7"]

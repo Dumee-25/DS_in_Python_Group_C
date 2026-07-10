@@ -39,8 +39,13 @@ class Orchestrator(BaseAgent):
         while True:
             state = self.retrieval.run(state)
             state = self.synthesis.run(state)
-            state = self.temporal.run(state)
-            state = self.verification.run(state)
+            if state.verdict != "retry":
+                # A synthesis 'retry' (malformed JSON / INSUFFICIENT_CONTEXT)
+                # must short-circuit: verification would see an empty-citation
+                # draft, find nothing fabricated, and overwrite the verdict
+                # with 'grounded' — scoring a non-answer as an answer.
+                state = self.temporal.run(state)
+                state = self.verification.run(state)
             if state.verdict == "grounded":
                 return state
             if state.verdict == "abstain" or state.retries >= self.max_retries:

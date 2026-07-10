@@ -1,7 +1,6 @@
 """FastAPI surface — traceability exposed at the API level.
 
-Run: uvicorn api.server:create_app --factory
-(add `fastapi` and `uvicorn` to requirements.txt — your deps)
+Run: uvicorn api.server:create_app --factory
 """
 from fastapi import FastAPI
 from pydantic import BaseModel

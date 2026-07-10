@@ -72,3 +72,20 @@ def test_query_widening_changes_the_retry_query():
                        sub_queries=["right of access", "right to erasure"])
     state = orch.run(state)
     assert "right of access" in state.query         # widened, not identical rerun
+
+
+def test_synthesis_retry_skips_verification_and_never_grounds():
+    """INSUFFICIENT_CONTEXT must not leak: a synthesis 'retry' short-circuits
+    the pass — verification would see an empty-citation draft and overwrite
+    the verdict with 'grounded'."""
+    orch = Orchestrator(
+        retrieval=FakeAgent("retrieval"),
+        synthesis=FakeAgent("synthesis", verdict="retry"),
+        temporal=FakeAgent("temporal"),
+        verification=FakeAgent("verification", verdict="grounded"),
+        intent_llm=None,
+        max_retries=1,
+    )
+    state = orch.run(AgentState(query="What are the data subject rights?"))
+    assert state.verdict == "abstain"
+    assert orch.verification.runs == 0

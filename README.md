@@ -1,5 +1,4 @@
-<!-- This becomes the repo-root README.md. TODO(D): drop in B's architecture
-     PNG and the video link before submission. -->
+<!-- TODO: drop in the architecture PNG and the video link before submission. -->
 
 # PDPA Agent — Multi-Agent RAG for Sri Lanka's Personal Data Protection Act
 
@@ -15,7 +14,7 @@ that are not yet law.
 
 ## Architecture
 
-<!-- TODO(D): embed B's exported diagram: ![architecture](docs/architecture.png) -->
+<!-- TODO: embed the architecture diagram: ![architecture](docs/architecture.png) -->
 
 User → **Orchestrator** (intent gate · bounded reflect-retry loop)
 → **Retrieval Agent** (hybrid BM25 + vector + RRF over ChromaDB)
@@ -51,10 +50,10 @@ answer in-scope ones). Results land in `evaluation/results.md`.
 
 | Package                                                           | What                                           | Owner    |
 | ----------------------------------------------------------------- | ---------------------------------------------- | -------- |
-| `ingestion/`, `rag/`                                              | PDF → section-aware chunks → hybrid retrieval  | Person A |
-| `shared/`, `agents/orchestrator*`, `app_context.py`, `telemetry/` | contracts, DI, agent loop                      | Person B |
-| `llm/`, `agents/*_agent.py`                                       | LLM adapter + fallback, four specialist agents | Person C |
-| `evaluation/`, `api/`, `mcp_server/`, CI                          | metrics, runner, REST + MCP surfaces           | Person D |
+| `ingestion/`, `rag/`                                              | PDF → section-aware chunks → hybrid retrieval  | Sanith   |
+| `shared/`, `agents/orchestrator*`, `app_context.py`, `telemetry/` | contracts, DI, agent loop                      | Gagani   |
+| `llm/`, `agents/*_agent.py`                                       | LLM adapter + fallback, four specialist agents | Dumindu  |
+| `evaluation/`, `api/`, `mcp_server/`, CI                          | metrics, runner, REST + MCP surfaces           | Kaarthi  |
 
 ## API & MCP
 
@@ -65,7 +64,7 @@ python -m mcp_server.server                # MCP tools: ask_pdpa, search_corpus,
 
 ## Video
 
-<!-- TODO(D): unlisted YouTube link -->
+<!-- TODO: unlisted YouTube link -->
 
 ## Ethics
 
